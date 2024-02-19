@@ -1,0 +1,14 @@
+.loader-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px;
+
+  &__loader {
+    transform: scale(1.5);
+  }
+
+  &__text {
+    margin-top: 60px;
+  }
+}

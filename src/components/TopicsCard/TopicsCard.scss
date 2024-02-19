@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.topic {
+  border-radius: 50%;
+  height: 77px;
+  width: 77px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: $purpleColor;
+  border: 2px solid $purpleColor;
+  color: $lightColor;
+
+  transition: border 0.3s, background-color 0.3s;
+
+  @include onTablet-Desktop {
+    height: 107px;
+    width: 107px;
+  }
+
+  &:nth-child(odd) {
+    margin-top: -50px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid $pinkColor;
+  }
+
+  &__img {
+    width: 25px;
+    height: 25px;
+
+    @include onTablet-Desktop {
+      height: 47px;
+      width: 47px;
+    }
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 12px;
+
+    @include onTablet-Desktop {
+      font-size: 15px;
+    }
+  }
+
+  &--selected {
+    border: 2px solid $pinkColor;
+    background-color: #e4229b33;
+  }
+}

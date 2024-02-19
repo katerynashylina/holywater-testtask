@@ -1,0 +1,29 @@
+@import '../../styles/mixins.scss';
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__top {
+    margin-bottom: 30px;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 50px;
+
+    @include onPhone {
+      width: 335px;
+    }
+
+    @include onTablet-Desktop {
+      width: 545px;
+      margin-left: 100px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.language {
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}

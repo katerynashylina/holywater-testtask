@@ -1,0 +1,35 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+h1 {
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+  color: $lightColor;
+  margin-bottom: 18px;
+
+  @include onPhone {
+    width: 335px;
+  }
+  
+  @include onTablet-Desktop {
+    width: 545px;
+    font-size: 38px;
+  }
+}
+
+p {
+  font-weight: 400;
+  font-size: 17px;
+  text-align: center;
+  color: $whiteColor;
+
+  @include onTablet-Desktop {
+    font-size: 23px;
+  }
+}
+
+b {
+  font-weight: 700;
+  color: $pinkColor;
+}

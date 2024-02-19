@@ -1,0 +1,71 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.hate-card {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .hate-card__checkmark {
+      background-color: $pinkColor;
+    }
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 19px;
+    left: 290px;
+    height: 23px;
+    width: 23px;
+    background-color: $lightPurpleColor;
+    border: 1px solid $pinkColor;
+    border-radius: 9px;
+
+    @include onTablet-Desktop {
+      height: 33px;
+      width: 33px;
+      top: 30px;
+      left: 480px;
+    }
+  }
+}
+
+.hate-card__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.hate-card .hate-card__input:checked ~ .hate-card__checkmark:after {
+  display: block;
+}
+
+.hate-card .hate-card__checkmark:after {
+  left: 8.5px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+  @include onTablet-Desktop {
+    height: 14px;
+    width: 8px;
+    top: 6px;
+    left: 11.5px;
+  }
+}

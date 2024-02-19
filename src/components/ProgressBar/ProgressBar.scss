@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.progress { 
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__button {
+    background-color: transparent;
+    border: none;
+  }
+
+  &__arrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  &__text {
+    font-weight: 600;
+  }
+  
+  &__bar {
+    width: 100%;
+    height: 3px;
+    border-radius: 8px;
+    background-color: $whiteColor;
+
+    @include onPhone {
+      width: 335px;
+    }
+
+    @include onTablet-Desktop {
+      width: 545px;
+    }
+  }
+}

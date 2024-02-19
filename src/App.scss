@@ -1,0 +1,71 @@
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+.page {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: $backgroundColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__container {
+    min-height: 100vh;
+    padding-bottom: 30px;
+    padding-top: 30px;
+
+    @include onPhone {
+      width: 335px;
+    }
+
+    @include onTablet-Desktop {
+      width: 545px;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__pretext {
+    color: $lightGrayColor;
+    margin-bottom: 25px;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: $purpleColor;
+    border: 2px solid $purpleColor;
+    color: $lightColor;
+
+    transition: border 0.3s, background-color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      border: 2px solid $pinkColor;
+    }
+
+    &--checked {
+      border: 2px solid $pinkColor;
+      background-color: #e4229b33;
+    }
+
+    &--long {
+      height: 70px;
+      padding-left: 20px;
+
+      @include onPhone {
+        width: 335px;
+      }
+
+      @include onTablet-Desktop {
+        width: 545px;
+        height: 100px;
+      }
+    }
+  }
+}

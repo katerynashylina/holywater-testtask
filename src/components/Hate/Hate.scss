@@ -1,0 +1,13 @@
+.hate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+}

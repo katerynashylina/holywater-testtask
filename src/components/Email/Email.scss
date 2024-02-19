@@ -1,0 +1,94 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__top {
+    margin-block: 30px;
+  }
+
+  &__input {
+    height: 76px;
+    background-color: $purpleColor;
+    border: 2px solid $purpleColor;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 17px;
+    border-radius: 25px;
+    font-family: "Nunito Sans", sans-serif;
+    color: $whiteColor;
+
+    transition: border 0.3s, background-color 0.3s;
+
+    &::placeholder {
+      color: #c4c8cc80;
+      font-family: "Nunito Sans", sans-serif;
+    }
+
+    &--valid {
+      &:hover {
+        cursor: pointer;
+        border: 2px solid $pinkColor;
+      }
+  
+      &:focus {
+        border: 2px solid $pinkColor;
+        background-color: #492752;
+      }
+    }
+    
+    &--error {
+      border: 2px solid #650d34;
+    }
+
+    @include onPhone {
+      width: 335px;
+    }
+
+    @include onTablet-Desktop {
+      width: 545px;
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    color: $lightGrayColor;
+    margin-bottom: 120px;
+
+    @include onTablet-Desktop  {
+      font-size: 16px;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    margin-inline: 5px;
+  }
+
+  &__error {
+    color: $lightColor;
+    font-size: 15px;
+    margin-left: -230px;
+    color: #c8226d;
+  }
+
+  &__form {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 40px #492752 inset !important;
+    -webkit-text-fill-color: $whiteColor;
+}

@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.button {
+  height: 56px;
+  background-color: $pinkColor;
+  border: 2px solid $pinkColor;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $lightColor;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 25px;
+  font-family: "Nunito Sans", sans-serif;
+
+  transition: background-color 0.3s, opacity 0.3s;
+
+  &--valid {
+    &:hover {
+      cursor: pointer;
+      background-color: $lightPurpleColor;
+    }
+  }
+
+  &--disabled {
+    opacity: 40%;
+  }
+
+  @include onPhone {
+    width: 335px;
+  }
+
+  @include onTablet-Desktop {
+    width: 545px;
+  }
+}
