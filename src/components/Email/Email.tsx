@@ -11,7 +11,6 @@ export const Email = () => {
   const navigate = useNavigate();
   const isEmailValid = useAppSelector(state => state.isEmailValid.isEmailValid);
   const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const usersEmail = useAppSelector(state => state.usersEmail.email);
   const translatedData = getTranslatedData(chosenLanguage);
   const dispatch = useAppDispatch();
 
@@ -23,14 +22,13 @@ export const Email = () => {
   } = useEmailValidation();
 
   const handleClick = () => {
-    dispatch(setEmail(emailData))
+    dispatch(setEmail(emailData));
     handleSubmit();
     
     if (isEmailValid) {
       navigate('/thank-you');
     }
   };
-
 
   return (
     <section className="email page__section">

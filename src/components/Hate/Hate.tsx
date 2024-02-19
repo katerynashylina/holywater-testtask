@@ -18,7 +18,7 @@ export const Hate = () => {
 
   const [selectedHates, setSelectedHates] = useState<{ [key: string]: boolean }>({});
 
-  const [storedHates, setStoredHates] = useLocalStorage([], 'selected-hates');
+  const [_, setStoredHates] = useLocalStorage([], 'selected-hates');
 
   const translatedData = getTranslatedData(chosenLanguage);
   const hates = translatedData ? translatedData.hates : [];
@@ -38,7 +38,7 @@ export const Hate = () => {
 
     setTimeout(() => {
       handleOptionClick(dispatch, stepNumber, navigate);
-    }, 1000);
+    }, 500);
   }
 
   return (

@@ -17,7 +17,7 @@ export const ProgressBar = () => {
     dispatch(setMinusPersantage());
 
     const currentStepIndex = steps.findIndex(step => step.number === stepNumber.number);
-    if (currentStepIndex > 1) {
+    if (currentStepIndex > 0) {
       dispatch(setStepNumber(steps[currentStepIndex - 1]));
     }
 

@@ -5,7 +5,7 @@ import './ButtonNext.scss';
 
 type Props = {
   onClick: () => void,
-  disabled: boolean,
+  disabled?: boolean,
 }
 
 export const ButtonNext: React.FC<Props> = ({ onClick, disabled }) => {

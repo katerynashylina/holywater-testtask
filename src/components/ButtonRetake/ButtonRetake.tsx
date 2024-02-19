@@ -1,20 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import '../ButtonNext/ButtonNext.scss';
 import { getTranslatedData } from '../../helpers/translatedData';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { setStepNumber } from '../../features/stepNumber';
+import { stepsEng } from '../../data/dataEn';
 
 export const ButtonRetake = () => {
   const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
   const translatedData = getTranslatedData(chosenLanguage);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleClick = () => {
+    dispatch(setStepNumber(stepsEng[0]));
+
     navigate('/');
   };
 
   return (
     <button 
-      className="button"
+      className="button button--valid"
       onClick={handleClick}
     >
       {translatedData && translatedData.text[0].btnRetake}

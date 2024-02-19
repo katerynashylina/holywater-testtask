@@ -24,7 +24,6 @@ export const useEmailValidation = () => {
     const isFormValid = !newErrors.email;
     setEmailErrors(newErrors);
 
-    dispatch(setIsEmailValid(isFormValid));
     return isFormValid;
   };
 
@@ -34,6 +33,9 @@ export const useEmailValidation = () => {
       ...prevData,
       [name]: value,
     }));
+
+    const isValidForm = validateEmail();
+    dispatch(setIsEmailValid(isValidForm));
   };
 
   const handleSubmit = () => {

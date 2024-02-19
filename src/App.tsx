@@ -20,7 +20,7 @@ export const App = () => {
 
   useEffect(() => {
     setIsQuizPage(location.pathname.startsWith('/quiz'));
-  }, [location.pathname]);
+  }, [location.pathname]);  
 
   return (
     <div className="page">

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { OptionImgType } from "../../types/optionImgType";
 import './TopicsCard.scss';
 import classNames from "classnames";

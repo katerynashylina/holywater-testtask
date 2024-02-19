@@ -14,7 +14,7 @@ export const Topics = () => {
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState<{ [key: string]: boolean }>({});
 
-  const [storedTopics, setStoredTopics] = useLocalStorage([], 'selected-topics');
+  const [_, setStoredTopics] = useLocalStorage([], 'selected-topics');
 
   const translatedData = getTranslatedData(chosenLanguage);
   const topics = translatedData ? translatedData.topics : [];

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { languages } from '../data/dataEn';
-import { useLocalStorage } from '../helpers/useLocalStorage';
 
 const initialState = {
   chosenLanguage: languages[0],

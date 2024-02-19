@@ -13,7 +13,7 @@ export const Language = () => {
   const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [storedLanguage, setStoredLanguage] = useLocalStorage(null, 'language');
+  const [_, setStoredLanguage] = useLocalStorage(null, 'language');
 
   const handleClick = (language: OptionType) => {
     setStoredLanguage(language);
@@ -21,7 +21,7 @@ export const Language = () => {
     
     setTimeout(() => {
       handleOptionClick(dispatch, stepNumber, navigate);
-    }, 1000);
+    }, 500);
   };
 
   return (

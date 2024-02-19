@@ -14,7 +14,7 @@ export const Age = () => {
   const chosenAge = useAppSelector(state => state.chosenAge.chosenAge);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [storedAge, setStoredAge] = useLocalStorage(null, 'age');
+  const [_, setStoredAge] = useLocalStorage(null, 'age');
 
   const translatedData = getTranslatedData(chosenLanguage);
   const ages = translatedData ? translatedData.ages : [];
@@ -25,7 +25,7 @@ export const Age = () => {
     
     setTimeout(() => {
       handleOptionClick(dispatch, stepNumber, navigate);
-    }, 1000);
+    }, 500);
   };
 
   return (

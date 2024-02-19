@@ -38,8 +38,6 @@ export const Thank = () => {
       ['6', 'Email', 'email', JSON.stringify(usersEmail)],
     ];
 
-    console.log(csvData)
-
     const csvContent = csvData.map(row => row.join(',')).join('\n');
     
     const blob = new Blob([csvContent], { type: 'text/csv' });
