@@ -38,3 +38,13 @@
     }
   }
 }
+
+#progress__bar--inside {
+  @include onPhone {
+    max-width: 335px;
+  }
+
+  @include onTablet-Desktop {
+    max-width: 545px;
+  }
+}

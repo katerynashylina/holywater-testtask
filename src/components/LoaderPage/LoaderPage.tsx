@@ -1,4 +1,3 @@
-import { useAppSelector } from "../../app/hooks";
 import { getTranslatedData } from "../../helpers/translatedData";
 import { OptionType } from "../../types/optionType";
 import { Loader } from "../Loader/Loader";

@@ -15,6 +15,11 @@ export const textFr = [
     thank: 'Merci',
     supporting: "de nous soutenir et d'avoir passé le quiz",
     download: 'Télécharger mes réponses',
+  },
+  {
+    oops: 'Oups, page non trouvée!',
+    sorry: "Désolé, mais la page demandée est introuvable. Vérifiez à nouveau l'adresse!",
+    maybe: 'Peut-être voulez-vous retourner à',
   }
 ];
 

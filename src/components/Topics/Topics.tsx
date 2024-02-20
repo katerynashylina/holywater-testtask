@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ButtonNext } from "../ButtonNext/ButtonNext";
 import { TopicsCard } from "../TopicsCard/TopicsCard";
 import { getTranslatedData } from "../../helpers/translatedData";
-import { useLocalStorage } from "../../helpers/useLocalStorage";
-import './Topics.scss';
 import { OptionType } from "../../types/optionType";
-import { OptionImgType } from "../../types/optionImgType";
+import { useAppDispatch } from "../../app/hooks";
+import { setPlusPersantage } from "../../features/persantage";
+import './Topics.scss';
 
 type Props = {
   storedLanguage: OptionType,
@@ -15,6 +15,7 @@ type Props = {
 
 export const Topics: React.FC<Props> = ({ storedLanguage, setStoredTopics }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [selectedTopics, setSelectedTopics] = useState<{ [key: string]: boolean }>({});
 
   const translatedData = getTranslatedData(storedLanguage);
@@ -29,6 +30,7 @@ export const Topics: React.FC<Props> = ({ storedLanguage, setStoredTopics }) => 
 
   const handleClick = () => {
     setStoredTopics(selectedTopics);
+    dispatch(setPlusPersantage());
 
     navigate('/loading');
   };

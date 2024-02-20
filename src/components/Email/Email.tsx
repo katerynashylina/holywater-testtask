@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { ButtonNext } from '../ButtonNext/ButtonNext';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTranslatedData } from '../../helpers/translatedData';
 import { OptionType } from '../../types/optionType';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ type Props = {
 export const Email: React.FC<Props> = ({ storedLanguage, email, setEmail }) => {
   const navigate = useNavigate();
   const translatedData = getTranslatedData(storedLanguage);
-  const dispatch = useAppDispatch();
 
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [emailErrors, setEmailErrors] = useState({ email: '' });

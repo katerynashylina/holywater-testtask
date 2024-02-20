@@ -1,20 +1,27 @@
 import { Link } from "react-router-dom";
 import './NotFound.scss';
+import { OptionType } from "../../types/optionType";
+import { getTranslatedData } from "../../helpers/translatedData";
 
-export const NotFound = () => {
+type Props = {
+  storedLanguage: OptionType,
+}
+
+export const NotFound: React.FC<Props> = ({ storedLanguage }) => {
+  const translatedData = getTranslatedData(storedLanguage);
+
   return (
     <section className="error">
       <h1 className="error__404">404</h1>
 
-      <h1>Oops, page not found!</h1>
+      <h1>{translatedData && translatedData.text[4].oops}</h1>
 
       <p className="error__subtitle">
-        Sorry, but the requested page is not found. Recheck the address!
-        <br />
+        {translatedData && translatedData.text[4].sorry}
       </p>
 
       <p className="error__desc">
-        Maybe you want to go back to
+        {translatedData && translatedData.text[4].maybe}
         <Link to="/" className="error__link"> Home page </Link>
         ?
       </p>

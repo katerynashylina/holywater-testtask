@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { ButtonNext } from "../ButtonNext/ButtonNext";
 import { HateCard } from "../HateCard/HateCard";
-import { handleOptionClick } from "../../helpers/optionClick";
 import { OptionType } from "../../types/optionType";
 import { getTranslatedData } from "../../helpers/translatedData";
-import { useLocalStorage } from "../../helpers/useLocalStorage";
+import { setPlusPersantage } from "../../features/persantage";
 import './Hate.scss';
 
 type Props = {
@@ -15,7 +14,6 @@ type Props = {
 }
 
 export const Hate: React.FC<Props> = ({ storedLanguage, setStoredHates }) => {
-  const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -35,6 +33,9 @@ export const Hate: React.FC<Props> = ({ storedLanguage, setStoredHates }) => {
 
   const handleClick = () => {
     setStoredHates(selectedHates);
+    dispatch(setPlusPersantage());
+
+    if (isAnyHateSelected) navigate('/quiz/5')
   }
 
   return (

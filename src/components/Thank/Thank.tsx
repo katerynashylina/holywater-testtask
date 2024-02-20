@@ -1,11 +1,10 @@
 import { ButtonRetake } from '../ButtonRetake/ButtonRetake';
-import { useAppSelector } from '../../app/hooks';
 import { getTranslatedData } from '../../helpers/translatedData';
 import check from '../../images/checkbox.png';
 import download from '../../images/download.png';
-import './Thank.scss';
 import { OptionImgType } from '../../types/optionImgType';
 import { OptionType } from '../../types/optionType';
+import './Thank.scss';
 
 type Props = {
   storedLanguage: OptionType,

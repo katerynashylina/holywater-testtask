@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setMinusPersantage } from '../../features/persantage';
-import { stepsEng as steps } from '../../data/dataEn';
-import { setStepNumber } from '../../features/stepNumber';
 import arrow from '../../images/back-arw.svg';
 import './ProgressBar.scss';
 
@@ -23,7 +21,6 @@ export const ProgressBar = () => {
       }
     }
   };
-
 
   return (
     <div className="progress">
@@ -52,6 +49,7 @@ export const ProgressBar = () => {
             borderRadius: '8px',
             transition: "backgroundColor 0.3s"
           }}
+          id='progress__bar--inside'
         ></div>
       </div>
     </div>

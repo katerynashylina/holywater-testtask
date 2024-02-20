@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-import { useAppSelector } from '../../app/hooks';
 import { getTranslatedData } from '../../helpers/translatedData';
-import './ButtonNext.scss';
 import { OptionType } from '../../types/optionType';
+import './ButtonNext.scss';
 
 type Props = {
   onClick?: () => void,

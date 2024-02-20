@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import { useAppSelector } from "../../app/hooks";
 import { OptionImgType } from "../../types/optionImgType";
-import './GenderCard.scss';
 import { Link } from "react-router-dom";
+import './GenderCard.scss';
 
 type Props = {
   gender: OptionImgType,

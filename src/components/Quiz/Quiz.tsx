@@ -93,7 +93,11 @@ const Quiz: React.FC<Props> = ({
         </div>
       );
     default:
-      return <NotFound />;
+      return (
+        <NotFound
+          storedLanguage={storedLanguage}
+        />
+      );
   }
 };
 

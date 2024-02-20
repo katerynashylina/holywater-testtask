@@ -1,24 +1,18 @@
 import classNames from 'classnames';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { languages, stepsEng } from '../../data/dataEn';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { OptionType } from '../../types/optionType';
-import { useLocalStorage } from '../../helpers/useLocalStorage';
-import { handleOptionClick } from '../../helpers/optionClick';
-import './Language.scss';
 import { setPlusPersantage } from '../../features/persantage';
+import './Language.scss';
 
 type Props = {
   storedLanguage: OptionType,
   setStoredLanguage: any,
 }
 
-// export const Language = () => {
 export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage }) => {
-  // const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-  // const { step } = useParams<{ step: string }>();
 
   const handleClick = (language: OptionType) => {
     setStoredLanguage(language);
@@ -41,7 +35,7 @@ export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage })
             className={classNames("page__option page__option--long", {
               'page__option--checked': language.id === storedLanguage.id,
             })}
-            onClick={() => setStoredLanguage(language)}
+            onClick={() => handleClick(language)}
             key={language.id}
             to='/quiz/2'
           >

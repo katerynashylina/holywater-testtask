@@ -1,13 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { useLocalStorage } from '../../helpers/useLocalStorage';
+import { useAppDispatch } from '../../app/hooks';
 import { GenderCard } from '../GenderCard/GenderCard';
 import { OptionImgType } from '../../types/optionImgType';
-import { handleOptionClick } from '../../helpers/optionClick';
 import { getTranslatedData } from '../../helpers/translatedData';
-import './Gender.scss';
 import { OptionType } from '../../types/optionType';
 import { setPlusPersantage } from '../../features/persantage';
+import './Gender.scss';
 
 type Props = {
   storedLanguage: OptionType,
@@ -16,10 +13,8 @@ type Props = {
 }
 
 export const Gender: React.FC<Props> = ({ storedLanguage, setStoredGender, storedGender }) => {
-  const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
+  
   const translatedData = getTranslatedData(storedLanguage);
   const genders = translatedData ? translatedData.genders : [];
 
@@ -30,6 +25,9 @@ export const Gender: React.FC<Props> = ({ storedLanguage, setStoredGender, store
 
   return (
     <section className="gender page__section">
+      <h1>
+        rerender
+      </h1>
       <h1>
         {translatedData && translatedData.steps[1].title}
       </h1>

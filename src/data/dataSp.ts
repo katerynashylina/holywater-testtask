@@ -15,6 +15,11 @@ export const textSp = [
     thank: 'Gracias',
     supporting: 'por apoyarnos y pasar la prueba',
     download: 'Descargar mis respuestas',
+  },
+  {
+    oops: '¡Ups, página no encontrada!',
+    sorry: 'Lo siento, pero la página solicitada no se encuentra. ¡Vuelve a verificar la dirección!',
+    maybe: 'Tal vez quieras volver a',
   }
 ];
 

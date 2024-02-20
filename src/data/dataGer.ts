@@ -15,6 +15,11 @@ export const textGer = [
     thank: 'Vielen Dank',
     supporting: 'für deine Unterstützung und das Bestehen des Quiz',
     download: 'Lade meine Antworten herunter',
+  },
+  {
+    oops: 'Hoppla, Seite nicht gefunden!',
+    sorry: 'Entschuldigung, aber die angeforderte Seite wurde nicht gefunden. Überprüfen Sie die Adresse erneut!',
+    maybe: 'Vielleicht möchten Sie zurückgehen zu',
   }
 ];
 

@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { OptionType } from "../../types/optionType";
 import './HateCard.scss';
-import { Link } from "react-router-dom";
 
 type Props = {
   hate: OptionType;
@@ -19,7 +18,6 @@ export const HateCard: React.FC<Props> = ({
   };
 
   return (
-    <Link to='/quiz/5' style={{ textDecoration: 'none' }}>
       <label
         className={classNames("page__option page__option--long hate-card", {
           "page__option--checked": isHateSelected,
@@ -35,6 +33,5 @@ export const HateCard: React.FC<Props> = ({
         />
         <span className="hate-card__checkmark"></span>
       </label>
-    </Link>
   );
 }

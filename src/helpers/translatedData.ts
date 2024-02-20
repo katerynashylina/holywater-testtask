@@ -5,7 +5,7 @@ import { agesSp, gendersSp, hatesSp, stepsSp, textSp, topicsSp } from "../data/d
 import { OptionType } from "../types/optionType";
 
 export const getTranslatedData = (chosenLanguage: OptionType ) => {
-  if (chosenLanguage === languages[0]) {
+  if (chosenLanguage.id === languages[0].id) {
     return {
       text: textEng,
       steps: stepsEng,
@@ -15,7 +15,7 @@ export const getTranslatedData = (chosenLanguage: OptionType ) => {
       topics: topicsEng,
     };
   }
-  if (chosenLanguage === languages[1]) {
+  if (chosenLanguage.id === languages[1].id) {
     return {
       text: textFr,
       steps: stepsFr,
@@ -25,7 +25,7 @@ export const getTranslatedData = (chosenLanguage: OptionType ) => {
       topics: topicsFr,
     };
   }
-  if (chosenLanguage === languages[2]) {
+  if (chosenLanguage.id === languages[2].id) {
     return {
       text: textGer,
       steps: stepsGer,
@@ -35,7 +35,7 @@ export const getTranslatedData = (chosenLanguage: OptionType ) => {
       topics: topicsGer,
     };
   }
-  if (chosenLanguage === languages[3]) {
+  if (chosenLanguage.id === languages[3].id) {
     return {
       text: textSp,
       steps: stepsSp,

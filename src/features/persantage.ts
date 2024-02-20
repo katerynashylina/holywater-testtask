@@ -13,7 +13,7 @@ const persantageSlice = createSlice({
     },
     setMinusPersantage: (state) => {
       state.persantage -= 16;
-    },
+    }
   },
 });
 

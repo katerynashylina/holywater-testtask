@@ -15,6 +15,11 @@ export const textEng = [
     thank: 'Thank you',
     supporting: 'for supporting us and passing quiz',
     download: 'Download my answers',
+  },
+  {
+    oops: 'Oops, page not found!',
+    sorry: 'Sorry, but the requested page is not found. Recheck the address!',
+    maybe: 'Maybe you want to go back to',
   }
 ];
 
