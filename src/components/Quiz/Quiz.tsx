@@ -33,11 +33,7 @@ const Quiz: React.FC<Props> = ({
 }) => {
   const { stepNumber } = useParams();
   const location = useLocation();
-  const [isQuizPage, setIsQuizPage] = useState(false);
-
-  useEffect(() => {
-    setIsQuizPage(location.pathname.startsWith('/quiz'));
-  }, [location.pathname]);
+  const isQuizPage = location.pathname.startsWith('/quiz');
 
   switch (stepNumber) {
     case '1':
