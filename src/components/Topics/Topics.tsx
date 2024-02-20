@@ -2,21 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonNext } from "../ButtonNext/ButtonNext";
 import { TopicsCard } from "../TopicsCard/TopicsCard";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { setChosenTopics } from "../../features/chosenTopics";
 import { getTranslatedData } from "../../helpers/translatedData";
 import { useLocalStorage } from "../../helpers/useLocalStorage";
 import './Topics.scss';
+import { OptionType } from "../../types/optionType";
+import { OptionImgType } from "../../types/optionImgType";
 
-export const Topics = () => {
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const dispatch = useAppDispatch();
+type Props = {
+  storedLanguage: OptionType,
+  setStoredTopics: any,
+}
+
+export const Topics: React.FC<Props> = ({ storedLanguage, setStoredTopics }) => {
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState<{ [key: string]: boolean }>({});
 
-  const [_, setStoredTopics] = useLocalStorage([], 'selected-topics');
-
-  const translatedData = getTranslatedData(chosenLanguage);
+  const translatedData = getTranslatedData(storedLanguage);
   const topics = translatedData ? translatedData.topics : [];
 
   const toggleTopicSelected = (topicId: string) => {
@@ -28,7 +29,6 @@ export const Topics = () => {
 
   const handleClick = () => {
     setStoredTopics(selectedTopics);
-    dispatch(setChosenTopics(selectedTopics));
 
     navigate('/loading');
   };
@@ -59,6 +59,7 @@ export const Topics = () => {
       <ButtonNext
         onClick={handleClick}
         disabled={!Object.values(selectedTopics).some(selected => selected)}
+        storedLanguage={storedLanguage}
       />
     </section>
   );

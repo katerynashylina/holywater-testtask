@@ -1,73 +1,90 @@
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { ButtonNext } from '../ButtonNext/ButtonNext';
-import { useEmailValidation } from '../../helpers/validateEmail';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTranslatedData } from '../../helpers/translatedData';
-import { setEmail } from '../../features/usersEmail';
+import { OptionType } from '../../types/optionType';
+import { useState } from 'react';
 import './Email.scss';
 
-export const Email = () => {
+type Props = {
+  storedLanguage: OptionType,
+  email: string,
+  setEmail: any,
+}
+
+export const Email: React.FC<Props> = ({ storedLanguage, email, setEmail }) => {
   const navigate = useNavigate();
-  const isEmailValid = useAppSelector(state => state.isEmailValid.isEmailValid);
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const translatedData = getTranslatedData(chosenLanguage);
+  const translatedData = getTranslatedData(storedLanguage);
   const dispatch = useAppDispatch();
 
-  const {
-    emailData,
-    emailErrors,
-    handleInputChange,
-    handleSubmit,
-  } = useEmailValidation();
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [emailErrors, setEmailErrors] = useState({ email: '' });
+
+  const validateEmail = (inputEmail: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(inputEmail);
+    setIsEmailValid(isValid);
+    setEmailErrors({ email: isValid ? '' : 'Please enter a valid email address' });
+    return isValid;
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    validateEmail(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   const handleClick = () => {
-    dispatch(setEmail(emailData));
-    handleSubmit();
-    
-    if (isEmailValid) {
+    if (validateEmail(email)) {
       navigate('/thank-you');
     }
-  };
+  }
 
   return (
     <section className="email page__section">
-      <div className="email__top">
-        <h1>
-          {translatedData && translatedData.text[1].email}
-        </h1>
-        
-        <p className="page__pretext">
-          {translatedData && translatedData.text[1].enterEm}
+      <form onSubmit={handleSubmit}>
+        <div className="email__top">
+          <h1>
+            {translatedData && translatedData.text[1].email}
+          </h1>
+          
+          <p className="page__pretext">
+            {translatedData && translatedData.text[1].enterEm}
+          </p>
+        </div>
+
+        <div className="email__form">
+          <input
+            type="email"
+            name="email"
+            className={classNames('email__input', {
+              'email__input--error': !isEmailValid,
+              'email__input--valid': isEmailValid,
+            })}
+            placeholder='Your email'
+            value={email}
+            onChange={handleEmailChange}
+          />
+
+          {emailErrors.email &&
+            <p className="email__error">{emailErrors.email}</p>
+          }
+        </div>
+
+        <p className='email__text'>
+          {translatedData && translatedData.text[1].terms}
         </p>
-      </div>
 
-      <div className="email__form">
-        <input
-          type="email"
-          name="email"
-          className={classNames('email__input', {
-            'email__input--error': !isEmailValid,
-            'email__input--valid': isEmailValid,
-          })}
-          placeholder='Your email'
-          value={emailData.email}
-          onChange={handleInputChange}
+        <ButtonNext
+          disabled={!isEmailValid}
+          storedLanguage={storedLanguage}
+          onClick={handleClick}
         />
-
-        {emailErrors.email &&
-          <p className="email__error">{emailErrors.email}</p>
-        }
-      </div>
-
-      <p className='email__text'>
-        {translatedData && translatedData.text[1].terms}
-      </p>
-
-      <ButtonNext
-        onClick={handleClick}
-        disabled={!isEmailValid}
-      />
+      </form>
     </section>
   ); 
 }

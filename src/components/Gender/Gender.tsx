@@ -5,27 +5,31 @@ import { GenderCard } from '../GenderCard/GenderCard';
 import { OptionImgType } from '../../types/optionImgType';
 import { handleOptionClick } from '../../helpers/optionClick';
 import { getTranslatedData } from '../../helpers/translatedData';
-import { setChosenHates } from '../../features/chosenHate';
 import './Gender.scss';
-import { setGender } from '../../features/chosenGender';
+import { OptionType } from '../../types/optionType';
 
-export const Gender = () => {
+type Props = {
+  storedLanguage: OptionType,
+  setStoredGender: any,
+  storedGender: OptionImgType,
+}
+
+export const Gender: React.FC<Props> = ({ storedLanguage, setStoredGender, storedGender }) => {
   const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [_, setStoredGender] = useLocalStorage(null, 'gender');
 
-  const translatedData = getTranslatedData(chosenLanguage);
+  const translatedData = getTranslatedData(storedLanguage);
   const genders = translatedData ? translatedData.genders : [];
 
   const handleClick = (gender: OptionImgType) => {
     setStoredGender(gender);
-    dispatch(setGender(gender));
+
+    navigate(`/quiz/3`);
     
-    setTimeout(() => {
-      handleOptionClick(dispatch, stepNumber, navigate);
-    }, 500);
+    // setTimeout(() => {
+    //   handleOptionClick(dispatch, stepNumber, navigate);
+    // }, 500);
   };
 
   return (
@@ -42,6 +46,7 @@ export const Gender = () => {
         {genders.map((gender: OptionImgType) => (
           <GenderCard
             gender={gender}
+            storedGender={storedGender}
             handleClick={handleClick}
             key={gender.id}
           />

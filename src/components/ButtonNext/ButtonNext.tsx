@@ -2,15 +2,17 @@ import classNames from 'classnames';
 import { useAppSelector } from '../../app/hooks';
 import { getTranslatedData } from '../../helpers/translatedData';
 import './ButtonNext.scss';
+import { OptionType } from '../../types/optionType';
 
 type Props = {
-  onClick: () => void,
+  onClick?: () => void,
   disabled?: boolean,
+  storedLanguage: OptionType,
+  type?: "button" | "submit" | "reset",
 }
 
-export const ButtonNext: React.FC<Props> = ({ onClick, disabled }) => {
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const translatedData = getTranslatedData(chosenLanguage);
+export const ButtonNext: React.FC<Props> = ({ onClick, disabled, storedLanguage, type = "button" }) => {
+  const translatedData = getTranslatedData(storedLanguage);
 
   return (
     <button 
@@ -20,6 +22,7 @@ export const ButtonNext: React.FC<Props> = ({ onClick, disabled }) => {
       })}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {translatedData && translatedData.text[0].btnNext}
     </button>

@@ -4,38 +4,50 @@ import { getTranslatedData } from '../../helpers/translatedData';
 import check from '../../images/checkbox.png';
 import download from '../../images/download.png';
 import './Thank.scss';
+import { OptionImgType } from '../../types/optionImgType';
+import { OptionType } from '../../types/optionType';
 
-export const Thank = () => {
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const translatedData = getTranslatedData(chosenLanguage);
+type Props = {
+  storedLanguage: OptionType,
+  storedGender: OptionImgType,
+  storedAge: OptionType,
+  storedHates: OptionType,
+  storedTopics: OptionImgType,
+  email: string,
+}
 
-  const chosenGender = useAppSelector(state => state.chosenGender.chosenGender);
-  const chosenAge = useAppSelector(state => state.chosenAge.chosenAge);
-  const chosenHate = useAppSelector(state => state.chosenHate.chosenHates);
-  const chosenTopics = useAppSelector(state => state.chosenTopics.chosenTopics);
-  const usersEmail = useAppSelector(state => state.usersEmail.email);
+export const Thank: React.FC<Props> = ({
+  storedAge, storedGender, storedHates, storedLanguage, storedTopics, email,
+}) => {
+  const translatedData = getTranslatedData(storedLanguage);
 
-  const chosenHateIds = Object.keys(chosenHate).filter(hateId => chosenHate[+hateId]);
+  const chosenHateIds = Object.entries(storedHates)
+  .filter(([isSelected]) => isSelected)
+  .map(([hateId]) => parseInt(hateId));
+
   const chosenHateNames = chosenHateIds.map(hateId => {
-    const selectedHate = translatedData?.hates.find(hate => hate.id === parseInt(hateId));
+    const selectedHate = translatedData?.hates.find(hate => hate.id === hateId);
     return selectedHate ? selectedHate.name : '';
   });
+  
+  const chosenTopicIds = Object.entries(storedTopics)
+  .filter(([isSelected]) => isSelected)
+  .map(([topicId]) => parseInt(topicId));
 
-  const chosenTopicIds = Object.keys(chosenTopics).filter(topicId => chosenHate[+topicId]);
   const chosenTopicNames = chosenTopicIds.map(topicId => {
-    const selectedTopic = translatedData?.topics.find(topic => topic.id === parseInt(topicId));
+    const selectedTopic = translatedData?.topics.find(topic => topic.id === topicId);
     return selectedTopic ? selectedTopic.name : '';
   });
 
   const handleDownloadClick = () => {
     const csvData = [
       ['order', 'title', 'type', 'answer'],
-      ['1', `${translatedData?.steps[0].title}`, 'single-select', chosenLanguage.name],
-      ['2', `${translatedData?.steps[1].title}`, 'single-select-image', chosenGender.name],
-      ['3', `${translatedData?.steps[2].title}`, 'single-select', chosenAge.name],
-      ['4', `${translatedData?.steps[3].title}`, 'multiple-select', chosenHateNames],
-      ['5', `${translatedData?.steps[4].title}`, 'bubble', chosenTopicNames],
-      ['6', 'Email', 'email', JSON.stringify(usersEmail)],
+      ['1', `${translatedData?.steps[0].title}`, 'single-select', storedLanguage.name],
+      ['2', `${translatedData?.steps[1].title}`, 'single-select-image', storedGender.name],
+      ['3', `${translatedData?.steps[2].title}`, 'single-select', storedAge.name],
+      ['4', `${translatedData?.steps[3].title}`, 'multiple-select', JSON.stringify(chosenHateNames)],
+      ['5', `${translatedData?.steps[4].title}`, 'bubble', JSON.stringify(chosenTopicNames)],
+      ['6', 'Email', 'email', email],
     ];
 
     const csvContent = csvData.map(row => row.join(',')).join('\n');
@@ -72,7 +84,9 @@ export const Thank = () => {
         </p>
       </div>
 
-      <ButtonRetake />
+      <ButtonRetake
+        storedLanguage={storedLanguage}
+      />
     </section>
   );
 }

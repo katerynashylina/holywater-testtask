@@ -6,15 +6,14 @@ import './GenderCard.scss';
 type Props = {
   gender: OptionImgType,
   handleClick: (gender: OptionImgType) => void,
+  storedGender: OptionImgType,
 }
 
-export const GenderCard: React.FC<Props> = ({ gender, handleClick }) => {
-  const chosenGender = useAppSelector(state => state.chosenGender.chosenGender);
-
+export const GenderCard: React.FC<Props> = ({ gender, handleClick, storedGender }) => {
   return (
     <div 
       className={classNames("gender-card page__option", {
-        'page__option--checked': gender.id === chosenGender.id,
+        'page__option--checked': gender.id === storedGender.id,
       })}
       onClick={() => handleClick(gender)}
     >

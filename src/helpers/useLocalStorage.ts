@@ -4,7 +4,7 @@ import { OptionImgType } from '../types/optionImgType';
 import { EmailType } from '../types/EmailType';
 
 export function useLocalStorage(
-  initialValue: OptionType | OptionType[] | OptionImgType | OptionImgType[] | EmailType | null,
+  initialValue: OptionType | OptionType[] | OptionImgType | OptionImgType[] | EmailType | string | null,
   key: string,
 ) {
   const getValue = () => {

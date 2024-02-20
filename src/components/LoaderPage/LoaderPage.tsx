@@ -1,11 +1,15 @@
 import { useAppSelector } from "../../app/hooks";
 import { getTranslatedData } from "../../helpers/translatedData";
+import { OptionType } from "../../types/optionType";
 import { Loader } from "../Loader/Loader";
 import './LoaderPage.scss';
 
-export const LoaderPage = () => {
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const translatedData = getTranslatedData(chosenLanguage);
+type Props = {
+  storedLanguage: OptionType,
+}
+
+export const LoaderPage: React.FC<Props> = ({ storedLanguage }) => {
+  const translatedData = getTranslatedData(storedLanguage);
 
   return (
     <section className="loader-page page__section">

@@ -1,27 +1,35 @@
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { languages, stepsEng } from '../../data/dataEn';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { OptionType } from '../../types/optionType';
 import { useLocalStorage } from '../../helpers/useLocalStorage';
 import { handleOptionClick } from '../../helpers/optionClick';
-import { setLanguage } from '../../features/chosenLanguage';
 import './Language.scss';
 
-export const Language = () => {
-  const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
+type Props = {
+  storedLanguage: OptionType,
+  setStoredLanguage: any,
+}
+
+export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage }) => {
+  // const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [_, setStoredLanguage] = useLocalStorage(null, 'language');
+  const { step } = useParams<{ step: string }>();
 
   const handleClick = (language: OptionType) => {
     setStoredLanguage(language);
-    dispatch(setLanguage(language));
-    
-    setTimeout(() => {
-      handleOptionClick(dispatch, stepNumber, navigate);
-    }, 500);
+
+
+    // const nextStep = parseInt(step || '0', 10) + 1;
+
+    navigate(`/quiz/2`);
+
+
+    // setTimeout(() => {
+    //   handleOptionClick(dispatch, stepNumber, navigate);
+    // }, 500);
   };
 
   return (
@@ -38,7 +46,7 @@ export const Language = () => {
         {languages.map(language => (
           <p
             className={classNames("page__option page__option--long", {
-              'page__option--checked': language.id === chosenLanguage.id,
+              'page__option--checked': language.id === storedLanguage.id,
             })}
             onClick={() => handleClick(language)}
             key={language.id}

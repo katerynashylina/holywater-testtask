@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ButtonNext } from "../ButtonNext/ButtonNext";
@@ -6,21 +6,22 @@ import { HateCard } from "../HateCard/HateCard";
 import { handleOptionClick } from "../../helpers/optionClick";
 import { OptionType } from "../../types/optionType";
 import { getTranslatedData } from "../../helpers/translatedData";
-import { setChosenHates } from "../../features/chosenHate";
 import { useLocalStorage } from "../../helpers/useLocalStorage";
 import './Hate.scss';
 
-export const Hate = () => {
+type Props = {
+  storedLanguage: OptionType,
+  setStoredHates: any,
+}
+
+export const Hate: React.FC<Props> = ({ storedLanguage, setStoredHates }) => {
   const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [selectedHates, setSelectedHates] = useState<{ [key: string]: boolean }>({});
 
-  const [_, setStoredHates] = useLocalStorage([], 'selected-hates');
-
-  const translatedData = getTranslatedData(chosenLanguage);
+  const translatedData = getTranslatedData(storedLanguage);
   const hates = translatedData ? translatedData.hates : [];
 
   const toggleHateSelected = (hateId: string) => {
@@ -34,11 +35,12 @@ export const Hate = () => {
 
   const handleClick = () => {
     setStoredHates(selectedHates);
-    dispatch(setChosenHates(selectedHates));
 
-    setTimeout(() => {
-      handleOptionClick(dispatch, stepNumber, navigate);
-    }, 500);
+    navigate(`/quiz/5`);
+
+    // setTimeout(() => {
+    //   handleOptionClick(dispatch, stepNumber, navigate);
+    // }, 500);
   }
 
   return (
@@ -65,6 +67,7 @@ export const Hate = () => {
       <ButtonNext
         onClick={handleClick}
         disabled={!isAnyHateSelected}
+        storedLanguage={storedLanguage}
       />
     </section>
   );

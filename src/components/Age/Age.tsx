@@ -2,30 +2,33 @@ import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { OptionType } from "../../types/optionType";
-import { setAge } from "../../features/chosenAge";
 import { handleOptionClick } from "../../helpers/optionClick";
 import { useLocalStorage } from "../../helpers/useLocalStorage";
 import { getTranslatedData } from "../../helpers/translatedData";
 import './Age.scss';
 
-export const Age = () => {
+type Props = {
+  storedLanguage: OptionType,
+  setStoredAge: any,
+  storedAge: OptionType,
+}
+
+export const Age: React.FC<Props> = ({ storedLanguage, setStoredAge, storedAge }) => {
   const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const chosenAge = useAppSelector(state => state.chosenAge.chosenAge);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [_, setStoredAge] = useLocalStorage(null, 'age');
 
-  const translatedData = getTranslatedData(chosenLanguage);
+  const translatedData = getTranslatedData(storedLanguage);
   const ages = translatedData ? translatedData.ages : [];
 
   const handleClick = (age: OptionType) => {
-    dispatch(setAge(age));
     setStoredAge(age);
+
+    navigate(`/quiz/4`);
     
-    setTimeout(() => {
-      handleOptionClick(dispatch, stepNumber, navigate);
-    }, 500);
+    // setTimeout(() => {
+    //   handleOptionClick(dispatch, stepNumber, navigate);
+    // }, 500);
   };
 
   return (
@@ -42,7 +45,7 @@ export const Age = () => {
         {ages.map((age: OptionType) => (
           <p
             className={classNames("page__option page__option--long", {
-              'page__option--checked': age.id === chosenAge.id,
+              'page__option--checked': age.id === storedAge.id,
             })}
             onClick={() => handleClick(age)}
             key={age.id}

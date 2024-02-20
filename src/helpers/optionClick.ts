@@ -7,15 +7,14 @@ import { stepsEng as steps } from "../data/dataEn";
 
 export const handleOptionClick = (
   dispatch: Dispatch,
-  stepNumber: StepType,
   navigate: NavigateFunction,
 ) => {
   dispatch(setPlusPersantage());
 
-  const currentStepIndex = steps.findIndex(step => step.number === stepNumber.number);
-  if (currentStepIndex < steps.length - 1) {
-    dispatch(setStepNumber(steps[currentStepIndex + 1]));
-  }
+  const pathName = window.location.pathname;
+  // const currentStepNumber = pathName ? parseInt(pathName.split('/').pop(), 10) : 0;
 
-  navigate(`/quiz/${stepNumber.number + 1}`);
+  //   if (currentStepNumber < 5) {
+  //     navigate(`/quiz/${currentStepNumber + 1}`);
+  //   }
 }

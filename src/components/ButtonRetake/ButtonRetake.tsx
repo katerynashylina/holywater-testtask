@@ -3,10 +3,14 @@ import { getTranslatedData } from '../../helpers/translatedData';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setStepNumber } from '../../features/stepNumber';
 import { stepsEng } from '../../data/dataEn';
+import { OptionType } from '../../types/optionType';
 
-export const ButtonRetake = () => {
-  const chosenLanguage = useAppSelector(state => state.chosenLanguage.chosenLanguage);
-  const translatedData = getTranslatedData(chosenLanguage);
+type Props = {
+  storedLanguage: OptionType,
+}
+
+export const ButtonRetake: React.FC<Props> = ({ storedLanguage }) => {
+  const translatedData = getTranslatedData(storedLanguage);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

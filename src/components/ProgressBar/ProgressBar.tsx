@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setMinusPersantage } from '../../features/persantage';
 import { stepsEng as steps } from '../../data/dataEn';
@@ -8,7 +8,7 @@ import './ProgressBar.scss';
 
 export const ProgressBar = () => {
   const persantage = useAppSelector(state => state.persantage.persantage);
-  const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
+  const { stepNumber } = useParams();
   
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -16,13 +16,14 @@ export const ProgressBar = () => {
   const handleBackClick = () => {
     dispatch(setMinusPersantage());
 
-    const currentStepIndex = steps.findIndex(step => step.number === stepNumber.number);
-    if (currentStepIndex > 0) {
-      dispatch(setStepNumber(steps[currentStepIndex - 1]));
+    if (stepNumber) {
+      const prevStepNumber = parseInt(stepNumber, 10) - 1;
+      if (prevStepNumber >= 1) {
+        navigate(`/quiz/${prevStepNumber}`);
+      }
     }
-
-  navigate(`/quiz/${stepNumber.number - 1}`);
   };
+
 
   return (
     <div className="progress">
@@ -31,14 +32,14 @@ export const ProgressBar = () => {
           className='progress__button'
           onClick={handleBackClick}
           style={{
-            opacity: stepNumber.number !== 1 ? "1" : "0",
+            opacity: stepNumber && parseInt(stepNumber, 10) !== 1 ? "1" : "0",
           }}
         >
           <img src={arrow} alt="arrow" className='progress__arrow' />
         </button>
 
         <p className="progress__text">
-          <span style={{ color: '#e4229c' }}>{`${stepNumber.number}`}</span> / 5
+          <span style={{ color: '#e4229c' }}>{`${stepNumber}`}</span> / 5
         </p>
       </div>
 
