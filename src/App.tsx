@@ -29,17 +29,12 @@ export const App = () => {
   const [storedHates, setStoredHates] = useLocalStorage([], 'selected-hates');
   const [storedTopics, setStoredTopics] = useLocalStorage([], 'selected-topics');
   const [email, setEmail] = useLocalStorage('', 'email');
-  
-  const [isQuizPage, setIsQuizPage] = useState(false);
 
-  useEffect(() => {
-    setIsQuizPage(location.pathname.startsWith('/quiz'));
-  }, [location.pathname]);
 
   return (
     <div className="page">
       <div className="page__container">
-        {isQuizPage && <Header />}
+        
 
         <Routes>
           {/* <Route

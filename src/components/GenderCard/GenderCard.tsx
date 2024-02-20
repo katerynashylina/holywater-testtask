@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useAppSelector } from "../../app/hooks";
 import { OptionImgType } from "../../types/optionImgType";
 import './GenderCard.scss';
+import { Link } from "react-router-dom";
 
 type Props = {
   gender: OptionImgType,
@@ -11,11 +12,12 @@ type Props = {
 
 export const GenderCard: React.FC<Props> = ({ gender, handleClick, storedGender }) => {
   return (
-    <div 
+    <Link
       className={classNames("gender-card page__option", {
         'page__option--checked': gender.id === storedGender.id,
       })}
       onClick={() => handleClick(gender)}
+      to='/quiz/3'
     >
       <img
         src={`img/${gender.img}`}
@@ -26,6 +28,6 @@ export const GenderCard: React.FC<Props> = ({ gender, handleClick, storedGender 
       <p>
         {gender.name}
       </p>
-    </div>
+    </Link>
   );
 }

@@ -35,12 +35,6 @@ export const Hate: React.FC<Props> = ({ storedLanguage, setStoredHates }) => {
 
   const handleClick = () => {
     setStoredHates(selectedHates);
-
-    navigate(`/quiz/5`);
-
-    // setTimeout(() => {
-    //   handleOptionClick(dispatch, stepNumber, navigate);
-    // }, 500);
   }
 
   return (

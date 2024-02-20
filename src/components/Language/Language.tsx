@@ -1,35 +1,28 @@
 import classNames from 'classnames';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { languages, stepsEng } from '../../data/dataEn';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { OptionType } from '../../types/optionType';
 import { useLocalStorage } from '../../helpers/useLocalStorage';
 import { handleOptionClick } from '../../helpers/optionClick';
 import './Language.scss';
+import { setPlusPersantage } from '../../features/persantage';
 
 type Props = {
   storedLanguage: OptionType,
   setStoredLanguage: any,
 }
 
+// export const Language = () => {
 export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage }) => {
   // const stepNumber = useAppSelector(state => state.stepNumber.stepNumber);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { step } = useParams<{ step: string }>();
+  // const navigate = useNavigate();
+  // const { step } = useParams<{ step: string }>();
 
   const handleClick = (language: OptionType) => {
     setStoredLanguage(language);
-
-
-    // const nextStep = parseInt(step || '0', 10) + 1;
-
-    navigate(`/quiz/2`);
-
-
-    // setTimeout(() => {
-    //   handleOptionClick(dispatch, stepNumber, navigate);
-    // }, 500);
+    dispatch(setPlusPersantage());
   };
 
   return (
@@ -44,15 +37,16 @@ export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage })
 
       <div className="language__items">
         {languages.map(language => (
-          <p
+          <Link
             className={classNames("page__option page__option--long", {
               'page__option--checked': language.id === storedLanguage.id,
             })}
-            onClick={() => handleClick(language)}
+            onClick={() => setStoredLanguage(language)}
             key={language.id}
+            to='/quiz/2'
           >
             {language.name}
-          </p>
+          </Link>
         ))}
       </div>
     </section>

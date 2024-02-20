@@ -7,6 +7,7 @@ import { handleOptionClick } from '../../helpers/optionClick';
 import { getTranslatedData } from '../../helpers/translatedData';
 import './Gender.scss';
 import { OptionType } from '../../types/optionType';
+import { setPlusPersantage } from '../../features/persantage';
 
 type Props = {
   storedLanguage: OptionType,
@@ -24,12 +25,7 @@ export const Gender: React.FC<Props> = ({ storedLanguage, setStoredGender, store
 
   const handleClick = (gender: OptionImgType) => {
     setStoredGender(gender);
-
-    navigate(`/quiz/3`);
-    
-    // setTimeout(() => {
-    //   handleOptionClick(dispatch, stepNumber, navigate);
-    // }, 500);
+    dispatch(setPlusPersantage());
   };
 
   return (

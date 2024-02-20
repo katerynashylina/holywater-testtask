@@ -4,7 +4,7 @@ import { agesGer, gendersGer, hatesGer, stepsGer, textGer, topicsGer } from "../
 import { agesSp, gendersSp, hatesSp, stepsSp, textSp, topicsSp } from "../data/dataSp";
 import { OptionType } from "../types/optionType";
 
-export const getTranslatedData = (chosenLanguage: OptionType) => {
+export const getTranslatedData = (chosenLanguage: OptionType ) => {
   if (chosenLanguage === languages[0]) {
     return {
       text: textEng,

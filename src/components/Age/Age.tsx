@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { OptionType } from "../../types/optionType";
 import { handleOptionClick } from "../../helpers/optionClick";
@@ -43,15 +43,16 @@ export const Age: React.FC<Props> = ({ storedLanguage, setStoredAge, storedAge }
 
       <div className="age__elements">
         {ages.map((age: OptionType) => (
-          <p
+          <Link
             className={classNames("page__option page__option--long", {
               'page__option--checked': age.id === storedAge.id,
             })}
-            onClick={() => handleClick(age)}
+            onClick={() => setStoredAge(age)}
             key={age.id}
+            to='/quiz/4'
           >
             {age.name}
-          </p>
+          </Link>
         ))}
       </div>
     </section>

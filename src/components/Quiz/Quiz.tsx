@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { NotFound } from "../NotFound/NotFound";
 import { Language } from "../Language/Language";
 import { Gender } from "../Gender/Gender";
@@ -7,6 +7,8 @@ import { Hate } from "../Hate/Hate";
 import { Topics } from "../Topics/Topics";
 import { OptionType } from "../../types/optionType";
 import { OptionImgType } from "../../types/optionImgType";
+import { useEffect, useState } from "react";
+import { Header } from "../Header/Header";
 
 type Props = {
   storedLanguage: OptionType,
@@ -30,46 +32,65 @@ const Quiz: React.FC<Props> = ({
   setStoredAge,
 }) => {
   const { stepNumber } = useParams();
-  console.log(stepNumber)
+  const location = useLocation();
+  const [isQuizPage, setIsQuizPage] = useState(false);
 
+  useEffect(() => {
+    setIsQuizPage(location.pathname.startsWith('/quiz'));
+  }, [location.pathname]);
 
   switch (stepNumber) {
     case '1':
       return (
-        <Language
-          storedLanguage={storedLanguage}
-          setStoredLanguage={setStoredLanguage}
-        />
+        <div>
+          {isQuizPage && <Header />}
+          <Language
+            storedLanguage={storedLanguage}
+            setStoredLanguage={setStoredLanguage}
+          />
+        </div>
       );
     case '2':
       return (
-        <Gender
-          storedLanguage={storedLanguage}
-          storedGender={storedGender}
-          setStoredGender={setStoredGender}
-        />
+        <div>
+          {isQuizPage && <Header />}
+          <Gender
+            storedLanguage={storedLanguage}
+            storedGender={storedGender}
+            setStoredGender={setStoredGender}
+          />
+        </div>
       );
     case '3':
       return (
-        <Age
-          setStoredAge={setStoredAge}
-          storedAge={storedAge}
-          storedLanguage={storedLanguage}
-        />
+        <div>
+          {isQuizPage && <Header />}
+          <Age
+            setStoredAge={setStoredAge}
+            storedAge={storedAge}
+            storedLanguage={storedLanguage}
+          />
+        </div>
       );
     case '4':
       return (
-        <Hate
-          storedLanguage={storedLanguage}
-          setStoredHates={setStoredHates}
-        />
+        <div>
+          {isQuizPage && <Header />}
+          <Hate
+            storedLanguage={storedLanguage}
+            setStoredHates={setStoredHates}
+          />
+        </div>
       );
     case '5':
       return (
-        <Topics
-          storedLanguage={storedLanguage}
-          setStoredTopics={setStoredTopics}
-        />
+        <div>
+          {isQuizPage && <Header />}
+          <Topics
+            storedLanguage={storedLanguage}
+            setStoredTopics={setStoredTopics}
+          />
+        </div>
       );
     default:
       return <NotFound />;

@@ -41,6 +41,15 @@
     background-color: $purpleColor;
     border: 2px solid $purpleColor;
     color: $lightColor;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 17px;
+    text-align: center;
+    color: $whiteColor;
+
+    @include onTablet-Desktop {
+      font-size: 23px;
+    }
 
     transition: border 0.3s, background-color 0.3s;
 
