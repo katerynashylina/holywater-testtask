@@ -13,9 +13,12 @@ const persantageSlice = createSlice({
     },
     setMinusPersantage: (state) => {
       state.persantage -= 16;
+    },
+    setDefaulPersantage: (state) => {
+      state.persantage = 16;
     }
   },
 });
 
-export const { setPlusPersantage, setMinusPersantage } = persantageSlice.actions;
+export const { setPlusPersantage, setMinusPersantage, setDefaulPersantage } = persantageSlice.actions;
 export default persantageSlice.reducer;

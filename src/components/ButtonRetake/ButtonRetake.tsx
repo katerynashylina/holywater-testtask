@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { getTranslatedData } from '../../helpers/translatedData';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setStepNumber } from '../../features/stepNumber';
-import { stepsEng } from '../../data/dataEn';
 import { OptionType } from '../../types/optionType';
+import { useAppDispatch } from '../../app/hooks';
+import { setDefaulPersantage } from '../../features/persantage';
 
 type Props = {
   storedLanguage: OptionType,
@@ -11,11 +10,11 @@ type Props = {
 
 export const ButtonRetake: React.FC<Props> = ({ storedLanguage }) => {
   const translatedData = getTranslatedData(storedLanguage);
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(setStepNumber(stepsEng[0]));
+    dispatch(setDefaulPersantage());
 
     navigate('/');
   };
