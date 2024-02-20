@@ -28,11 +28,17 @@ export const Topics: React.FC<Props> = ({ storedLanguage, setStoredTopics }) => 
     }));
   };
 
+  const selectedTopicsValues = Object.values(selectedTopics);
+  const hasAtLeastThreeSelectedTopics = Object.keys(selectedTopics).length >= 3;
+  const allSelectedTopicsTrue = selectedTopicsValues.every(value => value === true);
+
   const handleClick = () => {
     setStoredTopics(selectedTopics);
     dispatch(setPlusPersantage());
 
-    navigate('/loading');
+    if (hasAtLeastThreeSelectedTopics && allSelectedTopicsTrue) {
+      navigate('/loading');
+    }
   };
 
   return (
@@ -60,7 +66,7 @@ export const Topics: React.FC<Props> = ({ storedLanguage, setStoredTopics }) => 
 
       <ButtonNext
         onClick={handleClick}
-        disabled={!Object.values(selectedTopics).some(selected => selected)}
+        disabled={!(hasAtLeastThreeSelectedTopics && allSelectedTopicsTrue)}
         storedLanguage={storedLanguage}
       />
     </section>

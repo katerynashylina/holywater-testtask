@@ -23,7 +23,7 @@ export const Email: React.FC<Props> = ({ storedLanguage, email, setEmail }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValid = emailRegex.test(inputEmail);
     setIsEmailValid(isValid);
-    setEmailErrors({ email: isValid ? '' : 'Please enter a valid email address' });
+    setEmailErrors({ email: isValid ? '' : (translatedData?.text[1].error || '') });
     return isValid;
   };
 

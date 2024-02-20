@@ -7,6 +7,7 @@ export const textEng = [
     email: 'Email',
     enterEm: 'Enter your email to get full access',
     terms: 'By continuing I agree with Privacy policy Terms of use',
+    error: 'Please enter a valid email address',
   },
   {
     loaderText: 'Finding collections for you...',

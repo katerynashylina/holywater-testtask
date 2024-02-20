@@ -7,6 +7,7 @@ export const textFr = [
     email: 'E-mail',
     enterEm: "Entrez votre e-mail pour accéder à l'intégralité",
     terms: "En continuant, j'accepte la politique de confidentialité et les conditions d'utilisation",
+    error: "S'il vous plaît, mettez une adresse email valide",
   },
   {
     loaderText: 'Recherche de collections pour vous...',

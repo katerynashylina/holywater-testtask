@@ -26,9 +26,6 @@ export const Gender: React.FC<Props> = ({ storedLanguage, setStoredGender, store
   return (
     <section className="gender page__section">
       <h1>
-        rerender
-      </h1>
-      <h1>
         {translatedData && translatedData.steps[1].title}
       </h1>
 

@@ -7,6 +7,7 @@ export const textSp = [
     email: 'Correo electrónico',
     enterEm: 'Ingrese su correo electrónico para obtener acceso completo',
     terms: 'Al continuar, acepto la Política de privacidad y los Términos de uso',
+    error: 'Por favor, introduce una dirección de correo electrónico válida',
   },
   {
     loaderText: 'Buscando colecciones para ti...',

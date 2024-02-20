@@ -7,6 +7,7 @@ export const textGer = [
     email: 'E-Mail',
     enterEm: 'Geben Sie Ihre E-Mail-Adresse ein, um vollen Zugriff zu erhalten',
     terms: 'Durch die Fortsetzung stimme ich der Datenschutzrichtlinie und den Nutzungsbedingungen zu',
+    error: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
   },
   {
     loaderText: 'Sammlungen für dich finden...',
