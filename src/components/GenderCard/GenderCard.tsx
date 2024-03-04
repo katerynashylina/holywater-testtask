@@ -13,7 +13,7 @@ export const GenderCard: React.FC<Props> = ({ gender, handleClick, storedGender 
   return (
     <Link
       className={classNames("gender-card page__option", {
-        'page__option--checked': gender.id === storedGender.id,
+        'page__option--checked': storedGender?.id === gender.id,
       })}
       onClick={() => handleClick(gender)}
       to='/quiz/3'

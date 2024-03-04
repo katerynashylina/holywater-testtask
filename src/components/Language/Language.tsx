@@ -33,7 +33,7 @@ export const Language: React.FC<Props> = ({ storedLanguage, setStoredLanguage })
         {languages.map(language => (
           <Link
             className={classNames("page__option page__option--long", {
-              'page__option--checked': language.id === storedLanguage.id,
+              'page__option--checked': language.id === storedLanguage?.id,
             })}
             onClick={() => handleClick(language)}
             key={language.id}

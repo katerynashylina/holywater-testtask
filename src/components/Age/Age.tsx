@@ -37,7 +37,7 @@ export const Age: React.FC<Props> = ({ storedLanguage, setStoredAge, storedAge }
         {ages.map((age: OptionType) => (
           <Link
             className={classNames("page__option page__option--long", {
-              'page__option--checked': age.id === storedAge.id,
+              'page__option--checked': age.id === storedAge?.id,
             })}
             onClick={() => handleClick(age)}
             key={age.id}
